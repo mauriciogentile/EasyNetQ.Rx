@@ -27,7 +27,7 @@ bus.ObservableTopic<MyTestMessage>("my_subscription_id")
    .Subscribe(x => Console.Write(x.Value));
 ```
 
-Or with Aggregations
+Or with aggregations (System.Reactive.Linq)
 
 ```csharp
 var topic = bus.ObservableTopic<MyTestMessage>("my_subscription_id")
@@ -36,15 +36,15 @@ var topic = bus.ObservableTopic<MyTestMessage>("my_subscription_id")
 
 topic
    .Max(x => x.Value)
-   .Subscribe(x => Console.Write("Max values is: " + x));
+   .Subscribe(x => Console.Write("Max value is: " + x));
 
 topic
    .Min(x => x.Value)
-   .Subscribe(x => Console.Write("Min values is: " + x));
+   .Subscribe(x => Console.Write("Min value is: " + x));
 
 topic
    .Average(x => x.Value)
-   .Subscribe(x => Console.Write("Avg values is: " + x));
+   .Subscribe(x => Console.Write("Avg value is: " + x));
 ```
 
 ### Install
