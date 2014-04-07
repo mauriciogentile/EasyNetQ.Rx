@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reactive.Linq;
 using EasyNetQ.FluentConfiguration;
 
 namespace EasyNetQ.Rx
@@ -13,20 +8,14 @@ namespace EasyNetQ.Rx
         public static ObservableTopic<T> ObservableTopic<T>(this IBus bus, string topicId) where T : class
         {
             var topic = new ObservableTopic<T>();
-            bus.Subscribe<T>(topicId, (message) =>
-            {
-                topic.Next(message);
-            });
+            bus.Subscribe<T>(topicId, topic.Next);
             return topic;
         }
 
         public static ObservableTopic<T> ObservableTopic<T>(this IBus bus, string topicId, Action<ISubscriptionConfiguration> configure) where T : class
         {
             var topic = new ObservableTopic<T>();
-            bus.Subscribe<T>(topicId, (message) =>
-            {
-                topic.Next(message);
-            }, configure);
+            bus.Subscribe<T>(topicId, topic.Next, configure);
             return topic;
         }
 
