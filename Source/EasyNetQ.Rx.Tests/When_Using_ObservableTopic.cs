@@ -67,7 +67,7 @@ namespace EasyNetQ.Rx.Tests
             _mockBuilder.Bus
                 .ObservableTopic<MyTestMessage>(SubscriptionId)
                 .Where(x => x.Value < 5)
-                .Subscribe((x) =>
+                .Subscribe(x =>
                 {
                     received++;
                 });
@@ -122,10 +122,10 @@ namespace EasyNetQ.Rx.Tests
                 .ObservableTopic<MyTestMessage>(SubscriptionId)
                 .CompleteWhen(m => m.Value == 9);
 
-            topicStream.Max(x => x.Value).Subscribe((x) => { max = x; });
-            topicStream.Min(x => x.Value).Subscribe((x) => { min = x; });
-            topicStream.Average(x => x.Value).Subscribe((x) => { avg = x; });
-            topicStream.Sum(x => x.Value).Subscribe((x) => { sum = x; }, () => resetEvent.Set());
+            topicStream.Max(x => x.Value).Subscribe(x => { max = x; });
+            topicStream.Min(x => x.Value).Subscribe(x => { min = x; });
+            topicStream.Average(x => x.Value).Subscribe(x => { avg = x; });
+            topicStream.Sum(x => x.Value).Subscribe(x => { sum = x; }, () => resetEvent.Set());
 
             SendMessages(testMessage, 10);
 

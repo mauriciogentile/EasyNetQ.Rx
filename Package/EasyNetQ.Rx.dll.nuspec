@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EasyNetQ.Rx</id>
+    <version>0.9.2</version>
+    <authors>Mauri Gentile</authors>
+    <owners>Mauri Gentile</owners>
+    <licenseUrl>https://github.com/mauriciogentile/EasyNetQ.Rx/Licence.txt</licenseUrl>
+    <projectUrl>https://github.com/mauriciogentile/EasyNetQ.Rx</projectUrl>
+	  <iconUrl>https://raw.github.com/mikehadlow/EasyNetQ/gh-pages/design/logo_design.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>EasyNetQ.Rx is an extension for enabling reactive subscriptions on EasyNetQ</description>
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>EasyNetQ RabbitMQ Messaging Rx Reactive</tags>
+    <dependencies>
+      <dependency id="EasyNetQ" version="0.28.4.242" />
+      <dependency id="Rx-Main" version="2.2.2" />
+    </dependencies>
+  </metadata>
+</package>

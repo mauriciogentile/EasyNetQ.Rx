@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EasyNetQ.Rx
 {
     class Unsubscriber<T> : IDisposable
     {
-        private readonly List<IObserver<T>> _observers;
+        private readonly IEnumerable<IObserver<T>> _observers;
         private readonly IObserver<T> _observer;
 
-        public Unsubscriber(List<IObserver<T>> observers, IObserver<T> observer)
+        public Unsubscriber(IEnumerable<IObserver<T>> observers, IObserver<T> observer)
         {
             _observers = observers;
             _observer = observer;
@@ -17,7 +18,9 @@ namespace EasyNetQ.Rx
         public void Dispose()
         {
             if (_observer != null && _observers.Contains(_observer))
-                _observers.Remove(_observer);
+            {
+                _observers.ToList().Remove(_observer);
+            }
         }
     }
 }

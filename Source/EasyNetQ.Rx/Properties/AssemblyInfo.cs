@@ -2,13 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
 [assembly: AssemblyTitle("EasyNetQ.Rx")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("EasyNetQ.Rx is an extension for enabling reactive subscriptions on EasyNetQ")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Ringo")]
 [assembly: AssemblyProduct("EasyNetQ.Rx")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2014")]
 [assembly: AssemblyTrademark("")]
