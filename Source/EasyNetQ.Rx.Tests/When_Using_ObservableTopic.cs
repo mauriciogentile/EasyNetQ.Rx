@@ -136,5 +136,40 @@ namespace EasyNetQ.Rx.Tests
             avg.ShouldEqual(4.5);
             sum.ShouldEqual(45);
         }
+
+        [Test]
+        public void Should_Be_Capable_Of_Using_Aggregations_With_Sampling()
+        {
+            const string testMessage = "Hola!";
+
+            int max1 = 0, max2 = 0;
+
+            var resetEvent1 = new AutoResetEvent(false);
+            var resetEvent2 = new AutoResetEvent(false);
+
+            _mockBuilder.Bus
+                .ObservableTopic<MyTestMessage>(SubscriptionId)
+                .CompleteWhen(m => m.Value == 19)
+                .Window(10)
+                .First()
+                .Max(x => x.Value)
+                .Subscribe(x => { max1 = x; }, () => resetEvent1.Set());
+
+            _mockBuilder.Bus
+                .ObservableTopic<MyTestMessage>(SubscriptionId)
+                .CompleteWhen(m => m.Value == 19)
+                .Window(5)
+                .First()
+                .Max(x => x.Value)
+                .Subscribe(x => { max2 = x; }, () => resetEvent2.Set());
+
+            SendMessages(testMessage, 20);
+
+            resetEvent1.WaitOne();
+            resetEvent2.WaitOne();
+
+            max1.ShouldEqual(9);
+            max2.ShouldEqual(4);
+        }
     }
 }
