@@ -8,6 +8,7 @@ namespace EasyNetQ.Rx
         readonly List<IObserver<T>> _observers;
 
         internal Func<T, bool> CompleteWhen { get; set; }
+        internal IDisposable InternalSubscription { get; set; }
 
         public ObservableTopic()
         {
@@ -38,6 +39,10 @@ namespace EasyNetQ.Rx
                     obs.OnCompleted();
                 }
             };
+            if (InternalSubscription != null)
+            {
+                InternalSubscription.Dispose();
+            }
         }
     }
 }

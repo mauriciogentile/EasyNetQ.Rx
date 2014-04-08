@@ -7,15 +7,13 @@ namespace EasyNetQ.Rx
     {
         public static ObservableTopic<T> ObservableTopic<T>(this IBus bus, string topicId) where T : class
         {
-            var topic = new ObservableTopic<T>();
-            bus.Subscribe<T>(topicId, topic.Next);
-            return topic;
+            return bus.ObservableTopic<T>(topicId, null);
         }
 
         public static ObservableTopic<T> ObservableTopic<T>(this IBus bus, string topicId, Action<ISubscriptionConfiguration> configure) where T : class
         {
             var topic = new ObservableTopic<T>();
-            bus.Subscribe<T>(topicId, topic.Next, configure);
+            topic.InternalSubscription = configure != null ? bus.Subscribe<T>(topicId, topic.Next, configure) : bus.Subscribe<T>(topicId, topic.Next);
             return topic;
         }
 
