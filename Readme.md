@@ -1,16 +1,18 @@
 ![EasyNetQ.Rx Logo](https://raw.github.com/wiki/mikehadlow/EasyNetQ/images/logo_design_150.png)
 
+#EasyNetQ.Rx 
+
 EasyNetQ.Rx is an extension for enabling reactive subscriptions on EasyNetQ
 
-### Usage
+##Usage
 
-To connect to a RabbitMQ broker...
+###To connect to a RabbitMQ broker...
 
 ```csharp
 var bus = RabbitHutch.CreateBus("host=localhost");
 ```
 
-To subscribe to a message...
+###To subscribe to a message...
 
 ```csharp
 bus.ObservableTopic<MyTestMessage>("my_subscription_id")
@@ -18,7 +20,7 @@ bus.ObservableTopic<MyTestMessage>("my_subscription_id")
    .Subscribe((x) => { max = x.Value; }, () => resetEvent.Set());
 ```
 
-Or
+###Or
 
 ```csharp
 bus.ObservableTopic<MyTestMessage>("my_subscription_id")
@@ -27,7 +29,7 @@ bus.ObservableTopic<MyTestMessage>("my_subscription_id")
    .Subscribe(x => Console.Write(x.Value));
 ```
 
-Or with aggregations (System.Reactive.Linq)
+###Or with aggregations (using System.Reactive.Linq)
 
 ```csharp
 var topic = bus.ObservableTopic<MyTestMessage>("my_subscription_id")
@@ -49,7 +51,7 @@ topic
 var bus = RabbitHutch.CreateBus("host=localhost");
 ```
 
-Buffering
+###Buffering
 
 ```csharp
 bus
@@ -60,6 +62,6 @@ bus
     .Subscribe(x => Console.WriteLine("Order of total ${0} has arrived", x.Total));
 ```
 
-### Install
+## Install
 
     PM> Install-Package EasyNetQ.Rx
