@@ -45,6 +45,19 @@ topic
 topic
    .Average(x => x.Value)
    .Subscribe(x => Console.Write("Avg value is: " + x));
+
+var bus = RabbitHutch.CreateBus("host=localhost");
+```
+
+Buffering
+
+```csharp
+bus
+    .ObservableTopic<Order>("new-orders-topic")
+    .Where(order => order.Total > 100)
+    .Buffer(10)
+    .SelectMany(x => x)
+    .Subscribe(x => Console.WriteLine("Order of total ${0} has arrived", x.Total));
 ```
 
 ### Install
