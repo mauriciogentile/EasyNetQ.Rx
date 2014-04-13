@@ -3,9 +3,10 @@
   <metadata>
     <id>EasyNetQ.Rx</id>
     <version>0.9.34</version>
+    <version>0.9.33</version>
     <authors>Mauri Gentile</authors>
     <owners>Mauri Gentile</owners>
-    <licenseUrl>https://github.com/mauriciogentile/EasyNetQ.Rx/Licence.txt</licenseUrl>
+    <licenseUrl>https://github.com/mauriciogentile/EasyNetQ.Rx/License.txt</licenseUrl>
     <projectUrl>https://github.com/mauriciogentile/EasyNetQ.Rx</projectUrl>
 	  <iconUrl>https://raw.github.com/mikehadlow/EasyNetQ/gh-pages/design/logo_design.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
