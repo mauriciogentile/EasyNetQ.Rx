@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EasyNetQ.Rx
 {
-    public class ObservableTopic<T> : IObservable<T>
+    public class ObservableTopic<T> : Disposable, IObservable<T>
     {
         readonly List<IObserver<T>> _observers;
 
@@ -13,6 +13,7 @@ namespace EasyNetQ.Rx
         public ObservableTopic()
         {
             _observers = new List<IObserver<T>>();
+            OnDispose = DisposeCallback;
         }
 
         public IDisposable Subscribe(IObserver<T> observer)
@@ -38,7 +39,13 @@ namespace EasyNetQ.Rx
                 {
                     obs.OnCompleted();
                 }
-            };
+            }
+        }
+
+        void DisposeCallback()
+        {
+            _observers.Clear();
+
             if (InternalSubscription != null)
             {
                 InternalSubscription.Dispose();

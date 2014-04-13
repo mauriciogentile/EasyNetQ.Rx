@@ -1,7 +1,8 @@
 ﻿using System;
 using EasyNetQ.FluentConfiguration;
+using EasyNetQ.Rx;
 
-namespace EasyNetQ.Rx
+namespace EasyNetQ
 {
     public static class BusExtensions
     {

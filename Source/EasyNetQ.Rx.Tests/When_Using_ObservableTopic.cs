@@ -1,9 +1,9 @@
-﻿using System;
-using System.Reactive.Linq;
+﻿using EasyNetQ.Tests;
 using EasyNetQ.Tests.Mocking;
 using NUnit.Framework;
-using EasyNetQ.Tests;
 using RabbitMQ.Client.Framing.v0_9_1;
+using System;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
