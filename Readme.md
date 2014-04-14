@@ -17,7 +17,7 @@ var bus = RabbitHutch.CreateBus("host=localhost");
 ```csharp
 bus.ObservableTopic<MyTestMessage>("my_subscription_id")
    .CompleteWhen(m => m.Value == 999)
-   .Subscribe((x) => { max = x.Value; }, () => resetEvent.Set());
+   .Subscribe((x) => { max = x.Value; });
 ```
 
 ###Or
@@ -47,8 +47,6 @@ topic
 topic
    .Average(x => x.Value)
    .Subscribe(x => Console.Write("Avg value is: " + x));
-
-var bus = RabbitHutch.CreateBus("host=localhost");
 ```
 
 ###Buffering
