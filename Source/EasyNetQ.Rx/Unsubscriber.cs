@@ -13,7 +13,7 @@ namespace EasyNetQ.Rx
         {
             _observers = observers;
             _observer = observer;
-            OnDispose = DisposeCallback;
+            ManagedDisposal = DisposeCallback;
         }
 
         void DisposeCallback()

@@ -6,7 +6,8 @@ namespace EasyNetQ.Rx
     {
         bool _disposed;
 
-        protected Action OnDispose;
+        protected Action ManagedDisposal;
+        protected Action UnmanagedDisposal;
 
         public void Dispose()
         {
@@ -19,9 +20,14 @@ namespace EasyNetQ.Rx
             if (_disposed)
                 return;
 
-            if (disposing && OnDispose != null)
+            if (disposing && ManagedDisposal != null)
             {
-                OnDispose();
+                ManagedDisposal();
+            }
+
+            if (UnmanagedDisposal != null)
+            {
+                UnmanagedDisposal();
             }
 
             _disposed = true;
