@@ -13,7 +13,6 @@ namespace EasyNetQ.Rx
         public ObservableTopic()
         {
             _observers = new List<IObserver<T>>();
-            ManagedDisposal = DisposeCallback;
         }
 
         public IDisposable Subscribe(IObserver<T> observer)
@@ -42,7 +41,17 @@ namespace EasyNetQ.Rx
             }
         }
 
-        void DisposeCallback()
+        protected override void Dispose(bool disposing)
+        {
+            if (!Disposed && disposing)
+            {
+                InternalDispose();
+            }
+
+            base.Dispose(disposing);
+        }
+
+        void InternalDispose()
         {
             _observers.Clear();
 

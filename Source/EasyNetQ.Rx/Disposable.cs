@@ -4,10 +4,7 @@ namespace EasyNetQ.Rx
 {
     public abstract class Disposable : IDisposable
     {
-        bool _disposed;
-
-        protected Action ManagedDisposal;
-        protected Action UnmanagedDisposal;
+        protected bool Disposed;
 
         public void Dispose()
         {
@@ -17,20 +14,7 @@ namespace EasyNetQ.Rx
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
-                return;
-
-            if (disposing && ManagedDisposal != null)
-            {
-                ManagedDisposal();
-            }
-
-            if (UnmanagedDisposal != null)
-            {
-                UnmanagedDisposal();
-            }
-
-            _disposed = true;
+            Disposed = true;
         }
 
         ~Disposable()

@@ -13,10 +13,19 @@ namespace EasyNetQ.Rx
         {
             _observers = observers;
             _observer = observer;
-            ManagedDisposal = DisposeCallback;
         }
 
-        void DisposeCallback()
+        protected override void Dispose(bool disposing)
+        {
+            if (!Disposed && disposing)
+            {
+                InternalDispose();
+            }
+
+            base.Dispose(disposing);
+        }
+
+        void InternalDispose()
         {
             if (_observer != null && _observers.Contains(_observer))
             {
