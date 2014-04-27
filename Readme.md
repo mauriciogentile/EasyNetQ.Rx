@@ -15,7 +15,7 @@ var bus = RabbitHutch.CreateBus("host=localhost");
 ###To subscribe to a message...
 
 ```csharp
-bus.ObservableTopic<MyTestMessage>("my_subscription_id")
+bus.ObservableTopic<MyTestMessage>("my_topic_id")
    .CompleteWhen(m => m.Value == 999)
    .Subscribe((x) => { max = x.Value; });
 ```
@@ -23,7 +23,7 @@ bus.ObservableTopic<MyTestMessage>("my_subscription_id")
 ###Or
 
 ```csharp
-bus.ObservableTopic<MyTestMessage>("my_subscription_id")
+bus.ObservableTopic<MyTestMessage>("my_topic_id")
    .Where(x => x.Value < 5)
    .CompleteWhen(m => m.Value == 0)
    .Subscribe(x => Console.Write(x.Value));
@@ -32,7 +32,7 @@ bus.ObservableTopic<MyTestMessage>("my_subscription_id")
 ###Or with aggregations (using System.Reactive.Linq)
 
 ```csharp
-var topic = bus.ObservableTopic<MyTestMessage>("my_subscription_id")
+var topic = bus.ObservableTopic<MyTestMessage>("my_topic_id")
    .Where(x => x.Value < 5)
    .CompleteWhen(m => m.Value == 0);
 
