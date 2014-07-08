@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/mauriciogentile/EasyNetQ.Rx.svg?branch=master)](https://travis-ci.org/mauriciogentile/EasyNetQ.Rx)
-
 ![EasyNetQ.Rx Logo](https://raw.github.com/wiki/mikehadlow/EasyNetQ/images/logo_design_150.png)
+
+[![Build Status](https://travis-ci.org/mauriciogentile/EasyNetQ.Rx.svg?branch=master)](https://travis-ci.org/mauriciogentile/EasyNetQ.Rx)
 
 #EasyNetQ.Rx 
 
