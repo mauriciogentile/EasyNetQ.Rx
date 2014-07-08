@@ -6,4 +6,4 @@ install:
   - sudo apt-get install mono-devel mono-gmcs nunit-console
 script:
   - xbuild Source/EasyNetQ.Rx.sln
-  - nunit-console Source\EasyNetQ.Rx.Tests\bin\Debug\EasyNetQ.Rx.Tests.dll
+  - nunit-console Source/EasyNetQ.Rx.Tests/bin/Debug/EasyNetQ.Rx.Tests.dll
