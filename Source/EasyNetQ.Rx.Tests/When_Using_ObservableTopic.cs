@@ -1,7 +1,7 @@
 ﻿using EasyNetQ.Tests;
 using EasyNetQ.Tests.Mocking;
-using NUnit.Framework;
-using RabbitMQ.Client.Framing.v0_9_1;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RabbitMQ.Client.Framing;
 using System;
 using System.Reactive.Linq;
 using System.Threading;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EasyNetQ.Rx.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class When_Using_ObservableTopic
     {
         MockBuilder _mockBuilder;
@@ -46,7 +46,7 @@ namespace EasyNetQ.Rx.Tests
             }
         }
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             var conventions = new Conventions(new TypeNameSerializer())
@@ -57,7 +57,7 @@ namespace EasyNetQ.Rx.Tests
             _mockBuilder = new MockBuilder(x => x.Register<IConventions>(_ => conventions));
         }
 
-        [Test]
+        [TestMethod]
         public void Should_Be_Capable_Of_Using_Where()
         {
             const string testMessage = "Hola!";
@@ -87,7 +87,7 @@ namespace EasyNetQ.Rx.Tests
             received.ShouldEqual(5);
         }
 
-        [Test]
+        [TestMethod]
         public void Should_Call_OnComplete_When_Provider_Is_Done()
         {
             const string testMessage = "Hola!";
@@ -108,7 +108,7 @@ namespace EasyNetQ.Rx.Tests
             max.ShouldEqual(999);
         }
 
-        [Test]
+        [TestMethod]
         public void Should_Be_Capable_Of_Using_Aggregations()
         {
             const string testMessage = "Hola!";
@@ -137,7 +137,7 @@ namespace EasyNetQ.Rx.Tests
             sum.ShouldEqual(45);
         }
 
-        [Test]
+        [TestMethod]
         public void Should_Be_Capable_Of_Using_Aggregations_With_Sampling()
         {
             const string testMessage = "Hola!";
@@ -151,7 +151,8 @@ namespace EasyNetQ.Rx.Tests
                 .ObservableTopic<MyTestMessage>(SubscriptionId)
                 .CompleteWhen(m => m.Value == 19)
                 .Window(10)
-                .First()
+                .Take(1)
+                .SelectMany(i => i)
                 .Max(x => x.Value)
                 .Subscribe(x => { max1 = x; }, () => resetEvent1.Set());
 
@@ -159,7 +160,8 @@ namespace EasyNetQ.Rx.Tests
                 .ObservableTopic<MyTestMessage>(SubscriptionId)
                 .CompleteWhen(m => m.Value == 19)
                 .Window(5)
-                .First()
+                .Take(1)
+                .SelectMany(i => i)
                 .Max(x => x.Value)
                 .Subscribe(x => { max2 = x; }, () => resetEvent2.Set());
 
