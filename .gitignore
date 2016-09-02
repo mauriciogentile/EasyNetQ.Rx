@@ -11,3 +11,4 @@
 /Source/EasyNetQ.Rx.Tests/*.ncrunchproject
 /Source/_NCrunch_EasyNetQ.Rx/*.cache
 /Source/EasyNetQ.Rx/*.ncrunchproject
+*.dat
