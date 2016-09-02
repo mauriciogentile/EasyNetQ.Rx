@@ -1,7 +1,7 @@
 ﻿using EasyNetQ.Tests;
 using EasyNetQ.Tests.Mocking;
 using NUnit.Framework;
-using RabbitMQ.Client.Framing.v0_9_1;
+using RabbitMQ.Client.Framing;
 using System;
 using System.Reactive.Linq;
 using System.Threading;
@@ -151,7 +151,8 @@ namespace EasyNetQ.Rx.Tests
                 .ObservableTopic<MyTestMessage>(SubscriptionId)
                 .CompleteWhen(m => m.Value == 19)
                 .Window(10)
-                .First()
+                .Take(1)
+                .SelectMany(i => i)
                 .Max(x => x.Value)
                 .Subscribe(x => { max1 = x; }, () => resetEvent1.Set());
 
@@ -159,7 +160,8 @@ namespace EasyNetQ.Rx.Tests
                 .ObservableTopic<MyTestMessage>(SubscriptionId)
                 .CompleteWhen(m => m.Value == 19)
                 .Window(5)
-                .First()
+                .Take(1)
+                .SelectMany(i => i)
                 .Max(x => x.Value)
                 .Subscribe(x => { max2 = x; }, () => resetEvent2.Set());
 

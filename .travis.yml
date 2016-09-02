@@ -1,9 +1,8 @@
 ## Travis CI Integration
 
-language: c
+language: csharp
+solution: Source/EasyNetQ.Rx.sln
 
-install:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
 script:
-  - xbuild Source/EasyNetQ.Rx.sln
-  - nunit-console Source/EasyNetQ.Rx.Tests/bin/Debug/EasyNetQ.Rx.Tests.dll
+  - xbuild /p:Configuration=Release Source/EasyNetQ.Rx.sln
+  - mono Source/packages/NUnit.ConsoleRunner.*/tools/nunit3-console.exe Source/EasyNetQ.Rx.Tests/bin/Release/EasyNetQ.Rx.Tests.dll
