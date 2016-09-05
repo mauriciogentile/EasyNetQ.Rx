@@ -17,7 +17,7 @@ var bus = RabbitHutch
     .CreateBus("host=localhost");
 ```
 
-###To subscribe to a message...
+###To subscribe to a message and connect the Hot observable...
 
 ```csharp
 var topic = bus
@@ -30,10 +30,13 @@ topic
     .Connect();
 ```
 
-###To stop a topic
+###To stop the Hot observable...
+
 ```csharp
 var topic = bus
-    .ToObservable<MyTestMessage>("my_topic_id")
+    .ToObservable<MyTestMessage>("my_topic_id");
+
+var subscription = topic
     .Subscribe(x => Console.Write(x.Value));
 
 topic
