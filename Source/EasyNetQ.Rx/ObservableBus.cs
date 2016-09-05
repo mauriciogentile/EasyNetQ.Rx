@@ -21,10 +21,6 @@ namespace EasyNetQ.Rx
             _configure = configure ?? new Action<ISubscriptionConfiguration>(c => { });
 
             _internal = new Subject<T>();
-
-            _bus
-                .Advanced
-                .Disconnected += (error, t) => _internal.OnCompleted();
         }
 
         public IDisposable Subscribe(IObserver<T> observer)
