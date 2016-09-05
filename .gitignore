@@ -12,3 +12,5 @@
 /Source/_NCrunch_EasyNetQ.Rx/*.cache
 /Source/EasyNetQ.Rx/*.ncrunchproject
 *.dat
+/Source/.vs/config
+/TestResult.xml

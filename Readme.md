@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/mauriciogentile/EasyNetQ.Rx.svg?branch=master)](https://travis-ci.org/mauriciogentile/EasyNetQ.Rx)
 
+[![NuGet status](https://img.shields.io/nuget/v/EasyNetQ.Rx.png?maxAge=2592000)](https://www.nuget.org/packages/EasyNetQ.Rx)
+
 #EasyNetQ.Rx 
 
 EasyNetQ.Rx is an extension for enabling reactive subscriptions on EasyNetQ
