@@ -1,27 +1,14 @@
 ﻿using System;
 using EasyNetQ.FluentConfiguration;
-using EasyNetQ.Rx;
+using System.Reactive.Subjects;
 
-namespace EasyNetQ
+namespace EasyNetQ.Rx
 {
     public static class BusExtensions
     {
-        public static ObservableTopic<T> ObservableTopic<T>(this IBus bus, string topicId) where T : class
+        public static IConnectableObservable<T> ToObservable<T>(this IBus bus, string topicId = null, Action<ISubscriptionConfiguration> configure = null) where T : class
         {
-            return bus.ObservableTopic<T>(topicId, null);
-        }
-
-        public static ObservableTopic<T> ObservableTopic<T>(this IBus bus, string topicId, Action<ISubscriptionConfiguration> configure) where T : class
-        {
-            var topic = new ObservableTopic<T>();
-            topic.InternalSubscription = configure != null ? bus.Subscribe<T>(topicId, topic.Next, configure) : bus.Subscribe<T>(topicId, topic.Next);
-            return topic;
-        }
-
-        public static ObservableTopic<T> CompleteWhen<T>(this ObservableTopic<T> topic, Func<T, bool> completeWhen) where T : class
-        {
-            topic.CompleteWhen = completeWhen;
-            return topic;
+            return new ObservableBus<T>(bus, topicId, configure);
         }
     }
 }
