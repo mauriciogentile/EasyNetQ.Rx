@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>EasyNetQ.Rx</id>
-    <version>0.9.38</version>
+    <version>0.9.39</version>
     <authors>Mauri Gentile</authors>
     <owners>Mauri Gentile</owners>
     <licenseUrl>https://raw.githubusercontent.com/mauriciogentile/EasyNetQ.Rx/master/License.txt</licenseUrl>
@@ -14,8 +14,8 @@
     <copyright>Copyright 2014</copyright>
     <tags>EasyNetQ RabbitMQ Messaging Rx Reactive</tags>
     <dependencies>
-      <dependency id="EasyNetQ" version="0.37.1.316" />
-      <dependency id="Rx-Main" version="2.2.2" />
+      <dependency id="EasyNetQ" version="0.63.0.448" />
+      <dependency id="System.Reactive.Core" version="3.0.0" />
     </dependencies>
   </metadata>
 </package>

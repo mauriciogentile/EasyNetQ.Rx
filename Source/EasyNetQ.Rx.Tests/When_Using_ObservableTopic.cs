@@ -1,5 +1,6 @@
 ﻿using EasyNetQ.Tests;
 using EasyNetQ.Tests.Mocking;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Reactive.Linq;
